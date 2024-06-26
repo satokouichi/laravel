@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 use App\Models\User;
 
 class TestController extends Controller
 {
     public function index()
     {
-        // Redisの設定テスト
-        Redis::set('kakukukeko', 'dsgfdgf');
-        $test = Redis::get('kakukukeko');
-        dump($test);
-
         // 仮ユーザーを追加
-        $this->addDummyUser();
+        // $this->addDummyUser();
+
+        $users = Cache::remember('users', 60, function () {
+            return User::all();
+        });
 
         return view('welcome');
     }
