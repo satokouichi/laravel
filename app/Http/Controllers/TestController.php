@@ -19,10 +19,10 @@ class TestController extends Controller
         //     return User::all();
         // });
 
-        $redis = Redis::connection();
-        $redis->set('key', 'value');
-        $value = $redis->get('key');
-        dump($value);
+        // $redis = Redis::connection();
+        // $redis->set('key', 'value');
+        // $value = $redis->get('key');
+        // dump($value);
 
         return view('welcome');
     }
