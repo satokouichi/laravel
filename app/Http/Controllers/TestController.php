@@ -15,9 +15,9 @@ class TestController extends Controller
         // 仮ユーザーを追加
         // $this->addDummyUser();
 
-        // $users = Cache::remember('users', 60, function () {
-        //     return User::all();
-        // });
+        $users = Cache::remember('users', 60, function () {
+            return User::all();
+        });
         // dump($users);
 
         // $redis = Redis::connection();
