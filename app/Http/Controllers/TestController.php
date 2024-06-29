@@ -13,7 +13,7 @@ class TestController extends Controller
     public function index()
     {
         // 仮ユーザーを追加
-        $this->addDummyUser();
+        // $this->addDummyUser();
 
         $users = Cache::remember('gfdsgdfgfdhg', 60, function () {
             return User::all();
