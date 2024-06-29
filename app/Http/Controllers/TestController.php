@@ -15,6 +15,12 @@ class TestController extends Controller
         // 仮ユーザーを追加
         // $this->addDummyUser();
 
+        $user = env('BASIC_AUTH_USER');
+        $pass = env('BASIC_AUTH_PASSWORD');
+        dump($user);
+        dd($pass);
+
+
         $users = Cache::remember('gfdsgdfgfdhg', 60, function () {
             return User::all();
         });

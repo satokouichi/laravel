@@ -10,6 +10,8 @@ class BasicAuthMiddleware
     {
         $user = env('BASIC_AUTH_USER');
         $pass = env('BASIC_AUTH_PASSWORD');
+        dump($user);
+        dd($pass);
 
         if ($request->getUser() != $user || $request->getPassword() != $pass) {
             $headers = ['WWW-Authenticate' => 'Basic'];
