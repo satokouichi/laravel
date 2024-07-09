@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\BasicAuthMiddleware;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\TopController;
 
 // Route::middleware([BasicAuthMiddleware::class])->group(function () {
-    Route::get('/', [TestController::class, 'index']);
+    Route::get('/', [TopController::class, 'index']);
 // });

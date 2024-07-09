@@ -4,28 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
 
-class TestController extends Controller
+class TopController extends Controller
 {
     public function index()
     {
         // 仮ユーザーを追加
-        $this->addDummyUser();
+        // $this->addDummyUser();
 
-        $users = Cache::remember('gfdsgdfgfdhg', 60, function () {
-            return User::all();
-        });
-        dump($users);
+        // キャッシュテスト
+        // $users = Cache::remember('gfdsgdfgfdhg', 60, function () {
+        //     return User::all();
+        // });
 
-        // $redis = Redis::connection();
-        // $redis->set('key', 'value');
-        // $value = $redis->get('key');
-        // dump($value);
-
-        return view('welcome');
+        return view('index');
     }
 
     protected function addDummyUser()
