@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Pipeline;
 use App\Http\Controllers\Controller;
 use App\Actions\AttemptToAuthenticate;
+use App\Rules\Recaptcha;
 
 class AuthenticatedSessionController
 {
@@ -47,6 +48,12 @@ class AuthenticatedSessionController
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'recaptcha_token' => ['required', 'captcha'],
+        ]);
+
         return $this->loginPipeline($request)->then(function ($request) {
             return redirect(route('index'));
         });
