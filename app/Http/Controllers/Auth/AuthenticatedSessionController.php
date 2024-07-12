@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Pipeline;
 use App\Http\Controllers\Controller;
 use App\Actions\AttemptToAuthenticate;
-use App\Rules\Recaptcha;
+use Biscolab\ReCaptcha\Facades\ReCaptcha;
+use Illuminate\Support\Facades\Log;
 
 class AuthenticatedSessionController
 {
@@ -51,8 +52,16 @@ class AuthenticatedSessionController
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'recaptcha_token' => ['required', 'captcha'],
+            'recaptcha_token' => 'required',
         ]);
+
+        $recaptcha = ReCaptcha::validate($request->input('recaptcha_token'));
+        Log::info('ReCaptcha Info:', $recaptcha);
+
+        if ($recaptcha['success'] === false || $recaptcha['score'] < 0.5 || $recaptcha['action'] !== 'submit') {
+            Log::info('ReCaptcha Error:', $recaptcha);
+            return redirect()->back()->withErrors(['recaptcha' => '不正なアクセスです']);
+        }
 
         return $this->loginPipeline($request)->then(function ($request) {
             return redirect(route('index'));

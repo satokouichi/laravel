@@ -2,5 +2,5 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+    Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
 ];
