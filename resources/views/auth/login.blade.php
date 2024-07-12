@@ -1,5 +1,4 @@
 <x-layout>
-
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="p-6 rounded bg-white shadow-md w-96">
             @if ($errors->any())
@@ -11,7 +10,7 @@
                     </ul>
                 </div>
             @endif
-            <form id="your-form" method="post" action="{{ route('login') }}" novalidate>
+            <form id="form" method="post" action="{{ route('login') }}" novalidate>
                 @csrf
                 <div class="mb-4">
                     <input type="text"
@@ -34,10 +33,8 @@
                     class="form-check-input hidden"
                     name="remember"
                     checked>
-                <input type="hidden" id="recaptcha_token" name="recaptcha_token">
-                {!! NoCaptcha::display(['data-size' => 'invisible']) !!}
+                <input type="hidden" name="recaptcha_token" id="recaptcha_token">
                 <button type="submit"
-                    id="submit-button"
                     class="btn btn-dark w-full bg-black text-white rounded p-2">
                     ログイン
                 </button>
@@ -46,22 +43,17 @@
     </div>
 
     @push('scripts')
-        <script src="https://www.google.com/recaptcha/api.js?render={{ config('captcha.sitekey') }}"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render={{ config('recaptcha.api_site_key') }}"></script>
         <script>
-            const siteKey = @json(config('captcha.sitekey'));
-            document.querySelector('form').addEventListener('submit', function(event) {
+            document.getElementById('form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 grecaptcha.ready(function() {
-                    grecaptcha.execute(siteKey, {action: 'submit'}).then(function(token) {
+                    grecaptcha.execute('{{ config('recaptcha.api_site_key') }}', {action: 'submit'}).then(function(token) {
                         document.getElementById('recaptcha_token').value = token;
-                        console.log('reCAPTCHA token set before submit:', document.getElementById('recaptcha_token').value);  // トークンの確認
-                        document.querySelector('form').submit();
-                    }).catch(function(error) {
-                        console.log('Error: ' + error);
+                        document.getElementById('form').submit();
                     });
                 });
             });
         </script>
     @endpush
-
 </x-layout>
