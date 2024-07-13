@@ -18,6 +18,7 @@ class TopController extends Controller
         $users = Cache::remember('gfdsgdfgfdhg', 60, function () {
             return User::all();
         });
+        dump($user);
 
         return view('index');
     }
