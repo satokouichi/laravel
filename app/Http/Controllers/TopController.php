@@ -15,9 +15,9 @@ class TopController extends Controller
         // $this->addDummyUser();
 
         // キャッシュテスト
-        // $users = Cache::remember('gfdsgdfgfdhg', 60, function () {
-        //     return User::all();
-        // });
+        $users = Cache::remember('gfdsgdfgfdhg', 60, function () {
+            return User::all();
+        });
 
         return view('index');
     }
