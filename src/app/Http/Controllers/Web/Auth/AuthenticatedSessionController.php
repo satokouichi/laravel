@@ -111,8 +111,10 @@ class AuthenticatedSessionController
     {
         $this->guard->logout();
 
+        $request->session()->invalidate();
+
         $request->session()->regenerateToken();
 
-        return redirect(route('index'));
+        return redirect(route('login'));
     }
 }
