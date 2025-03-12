@@ -7,7 +7,10 @@
     <title>{{ $title ?? 'サイト名' }}</title>
     @vite(['resources/sass/web/app.scss', 'resources/js/web/app.js'])
 </head>
-<body id="app">
+<body
+    id="{{ $bodys['id'] ?? 'app' }}"
+    class="{{ $bodys['class'] ?? 'app' }}">
+
     <x-web.header />
 
     <main class="container">
@@ -15,5 +18,6 @@
     </main>
 
     <x-web.footer />
+
 </body>
 </html>
