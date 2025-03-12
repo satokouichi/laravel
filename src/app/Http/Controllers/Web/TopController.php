@@ -11,6 +11,6 @@ class TopController
      */
     public function index()
     {
-        dd('トップページ');
+        return view('web.index', []);
     }
 }
