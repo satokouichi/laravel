@@ -1,5 +1,5 @@
 <x-web.layout :heads="$heads ?? ___('heads')" :bodys="$bodys ?? null">
-
+    <div id="vue-test"></div>
     <form method="post" action="{{ route('login') }}" novalidate>
         @csrf
         @if ($errors->any())
