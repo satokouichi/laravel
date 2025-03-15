@@ -2,5 +2,5 @@
     <!-- Vue Js Test
     <div id="vue-test"></div>
     -->
-    <div>トップページ2</div>
+    <div>トップページ3</div>
 </x-web.layout>
