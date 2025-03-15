@@ -9,11 +9,11 @@
         @endif
         <input type="hidden" name="target_path" value="{{ $target_path }}" />
         <div class="input-item">
-            <label for="email">メールアドレス</label>
+            <label for="email">Eメールアドレス</label>
             <input type="email"
                 name="email"
                 value="{{ old('email') }}"
-                placeholder="メールアドレス">
+                placeholder="Eメールアドレス">
         </div>
         <div class="input-item">
             <label for="password">パスワード</label>
