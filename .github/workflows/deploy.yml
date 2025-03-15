@@ -3,7 +3,8 @@ name: Deploy to Sakura VPS
 on:
   push:
     branches:
-      - main
+      - main # push 時に実行
+  workflow_dispatch: # 🔹 手動実行を有効化
 
 jobs:
   deploy:
