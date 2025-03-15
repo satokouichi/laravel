@@ -24,6 +24,8 @@ jobs:
           script: |
             cd /var/www/vhosts
             git pull origin main
+            rsync -av --delete ~/src/ /var/www/vhosts/src/
+            cd /var/www/vhosts/src
             composer install --no-dev --optimize-autoloader
             php artisan migrate --force
             php artisan config:cache
