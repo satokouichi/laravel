@@ -9,7 +9,7 @@ const count = ref(0);
     <h1 class="text-xl font-bold">Vue + Vite + Laravel 動作確認</h1>
     <p class="mt-2">カウント: {{ count }}</p>
     <button @click="count++">
-      カウントを増やす
+      カウント増加
     </button>
   </div>
 </template>
